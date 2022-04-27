@@ -1,6 +1,6 @@
 //clarifai-grpc api stuff
 const {ClarifaiStub, grpc} = require("clarifai-nodejs-grpc");
-const apiKey = process.env.CLARIFAI_API_KEY ? process.env.CLARIFAI_API_KEY : 'PUT YCLARIFAI API KEY HERE';
+const apiKey = process.env.CLARIFAI_API_KEY ? process.env.CLARIFAI_API_KEY : 'PUT YOUR CLARIFAI API KEY HERE';
 '1d511cc479844d0394fae530986ddbc7';
 const stub = ClarifaiStub.grpc();
 const metadata = new grpc.Metadata();
