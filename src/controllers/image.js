@@ -1,11 +1,22 @@
+const fs = require("fs");
 //clarifai-grpc api stuff
 const {ClarifaiStub, grpc} = require("clarifai-nodejs-grpc");
-const apiKey = process.env.CLARIFAI_API_KEY ? process.env.CLARIFAI_API_KEY : 'PUT YOUR CLARIFAI API KEY HERE';
-'1d511cc479844d0394fae530986ddbc7';
+
+const readTextFile = (fileName) => {
+  let content = null;
+  try {
+    content = fs.readFileSync(fileName).toString();
+  } catch (err){
+    console.log(`Error reading "${fileName}":`, err);
+  }
+  return content;
+}
+
+//reads apiKey from env, if no env is set reads "CLARIFAI.KEY" at project root dir
+const apiKey = process.env.CLARIFAI_API_KEY ? process.env.CLARIFAI_API_KEY : readTextFile("CLARIFAI.KEY");
 const stub = ClarifaiStub.grpc();
 const metadata = new grpc.Metadata();
 metadata.set("authorization", `Key ${apiKey}`);
-
 
 handleImage = (req, res, db) => {
     const { id, url } = req.body;
