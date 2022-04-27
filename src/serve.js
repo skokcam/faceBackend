@@ -50,8 +50,6 @@ app.post('/signin', handleSignin(db, bcrypt));
 
 app.get('/signout', handleSignout);
 
-app.get('/session', handleSession);
-
 app.post('/register', (req, res) => {handleRegister(req, res, db, bcrypt);});
 
 app.get('/profile', (req, res) => {handleProfiles(req, res, db);});
