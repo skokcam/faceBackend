@@ -20,7 +20,6 @@ const handleSignin = (db, bcrypt) => (req, res) => {
 			.where('email','=',login[0].email)
 			.then(userdata => {
 				res.json(userdata[0]);
-				console.log('login:', req.session.userID);
 			})
 		} else {
 			res.status(400).json('Error: logging in');
@@ -32,9 +31,7 @@ const handleSignin = (db, bcrypt) => (req, res) => {
 }
 
 const handleSignout = (req, res) => {
-	req.session.destroy();
 	res.json('LogOff');
-	console.log('logout:', req.session.userID);
 }
 
 module.exports = {
